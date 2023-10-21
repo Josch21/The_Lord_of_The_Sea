@@ -777,10 +777,10 @@ MonoBehaviour:
 
     SPACE - Jump
 
-    X / ENTER - Shoot
+    X / RIGHT MOUSE CLICK - Shoot
 
-    Z /
-    RSHIFT- Sword'
+    Z
+    / LEFT MOUSE CLICK - Sword'
 --- !u!222 &742949453
 CanvasRenderer:
   m_ObjectHideFlags: 0
