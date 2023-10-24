@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float powerUpShootTime = 10;
     public float powerUpTimer = 0;
     public float invincibleTime = 2;
+    public int coinsLoseWhenDie = 5;
 
     public GameObject swordHitbox;
     public Transform extrasHolder;
@@ -350,6 +351,7 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             animator.SetBool("dead", true);
+            sceneController.LoseCoins(coinsLoseWhenDie);
             StartCoroutine(WaitToRestart(1));
             CancelInvoke("EnableDisableSpriterenderer");
         }

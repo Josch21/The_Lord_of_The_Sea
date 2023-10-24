@@ -66,10 +66,11 @@ public class SceneController : MonoBehaviour
         fadeScreen.DOFade(1, 1).OnComplete(()=>SceneManager.LoadScene(sceneName));
     }
 
-    public void SpawnCoinPopUp(string amountText)
+    public void SpawnCoinPopUp(string amountText, Color color)
     {
         GameObject popUpCoin = Instantiate(coinsPopUpPrefab, coinsPopUpSpawn);
         popUpCoin.GetComponent<Text>().text = amountText;
+        popUpCoin.GetComponent<Text>().color = color;
     }
 
     public void GetCoin(int amount)
@@ -83,7 +84,22 @@ public class SceneController : MonoBehaviour
             coins += amount;
 
         }
-        SpawnCoinPopUp("+" + amount);
+        SpawnCoinPopUp("+" + amount, Color.green);
+        PlayerPrefs.SetInt("Coins", coins);
+    }
+
+    public void LoseCoins(int amount)
+    {
+        if (coins > amount)
+        {
+            coins-= amount;
+        }
+        else
+        {
+            coins = 0;
+
+        }
+        SpawnCoinPopUp("-" + amount, Color.red);
         PlayerPrefs.SetInt("Coins", coins);
     }
 
