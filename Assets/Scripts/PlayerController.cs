@@ -304,14 +304,18 @@ public class PlayerController : MonoBehaviour
     void ManageLifeBar()
     {
         lifeBar.value = currentLife;
-        /*if (currentLife <= 1)
+        if (currentLife > maxLife / 3 * 2) 
+        {
+            lifeBarFill.color = Color.green;
+        }
+        else if (currentLife <= maxLife / 3 * 2 && currentLife > maxLife / 3)
+        {
+            lifeBarFill.color = Color.yellow;
+        }
+        else if (currentLife <= maxLife / 3)
         {
             lifeBarFill.color = Color.red;
         }
-        else
-        {
-            lifeBarFill.color = Color.green;
-        }*/
     }
 
     void ManagePowerUp()
