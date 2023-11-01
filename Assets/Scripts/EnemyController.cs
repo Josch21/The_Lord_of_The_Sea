@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -202,7 +203,12 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(WaitToDestroy());
                 }
             }
+            if (collision.CompareTag("deathZone")) 
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 
     IEnumerator WaitToDestroy()
