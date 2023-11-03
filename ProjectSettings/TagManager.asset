@@ -17,6 +17,7 @@ TagManager:
   - bossBattle
   - enemySword
   - boss
+  - Ladder
   layers:
   - Default
   - TransparentFX
