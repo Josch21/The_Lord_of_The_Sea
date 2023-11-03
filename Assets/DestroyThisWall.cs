@@ -20,7 +20,7 @@ public class DestroyThisWall : MonoBehaviour
     {
         if(collider.tag == "sword")
         {
-            Destroy(gameObject);
+            this.transform.parent.gameObject.SetActive(false);
         }
     }
 }
