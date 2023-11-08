@@ -295,6 +295,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "crown") 
+        {
+            CollectibleController.collectible++;
+            Destroy(collision.gameObject);
+        }
+    }
+
     IEnumerator WaitToRestart(float time)
     {
         yield return new WaitForSeconds(time);
