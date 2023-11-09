@@ -263,8 +263,10 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("deathZone") && !isDead)
         {
-            isDead = true;
-            sceneController.ChangeScene(SceneManager.GetActiveScene().name);
+            //isDead = true;
+            currentLife = 0;
+            CheckIfDead();
+            //sceneController.ChangeScene(SceneManager.GetActiveScene().name);
         }
         if (collision.CompareTag("checkpoint") && !isDead)
         {
