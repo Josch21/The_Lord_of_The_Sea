@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     public float powerUpTimer = 0;
     public float invincibleTime = 2;
     public int coinsLoseWhenDie = 5;
+    public float jumpStartTime;
+    private float jumpTime;
+    private bool isJumping;
+
 
     public GameObject swordHitbox;
     public Transform extrasHolder;
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour
         ManageLifeBar();
         ManagePowerUp();
     }
-
+   
     void MoveByPhysics()
     {
         if (!isAttacking && !isStunned && controlsEnabled)
@@ -88,11 +92,30 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking && !isStunned && controlsEnabled)
         {
+            isJumping = true;
+            jumpTime = jumpStartTime;
             animator.Play("Jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-    }
 
+        if (Input.GetButton(KeyCode.Space) && isJumping == true) 
+        {
+            if (jumpTime > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                jumpTime -= Time.deltaTime;
+            }
+            else 
+            { 
+                isJumping = false;
+            }
+        }
+
+        if (Input.GetButtonUp(KeyCode.Space)) 
+        {
+            isJumping = false;
+        }
+    }
     private bool IsGrounded()
     {
         float extraHeightToCheck = 1f;
@@ -131,7 +154,14 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animator.SetBool("falling", false);
+                //animator.Play("Death");
             }
+
+        }
+        else 
+        {
+            animator.SetBool("dead", true);
+            animator.Play("Death");
         }
     }
 
