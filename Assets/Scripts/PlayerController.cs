@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
     SceneController sceneController;
     CameraController cameraController;
 
+    public bool crown1;
+    public bool crown2;
+    public bool crown3;
+
     private void Start()
     {
         controlsEnabled = true;
@@ -336,7 +340,24 @@ public class PlayerController : MonoBehaviour
         if (collision.transform.tag == "crown") 
         {
             CollectibleController.collectible++;
-            Destroy(collision.gameObject);
+            if (collision.gameObject.GetComponent<CrownNumber>().number ==1)
+            {
+                crown1 = true;
+                PlayerPrefs.SetInt("Crown1", 1);
+            }
+            else if (collision.gameObject.GetComponent<CrownNumber>().number == 2)
+            {
+                crown2 = true;
+                PlayerPrefs.SetInt("Crown2", 1);
+            }
+            else
+            {
+                crown3 = true;
+                PlayerPrefs.SetInt("Crown3", 1);
+            }
+
+            //Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 

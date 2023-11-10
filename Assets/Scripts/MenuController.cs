@@ -24,14 +24,25 @@ public class MenuController : MonoBehaviour
         fadeScreen.DOFade(0, 1f).OnComplete(() => fadeScreen.gameObject.SetActive(false));
     }
 
-    public void ChangeScene(string sceneName)
+    public void NewGame(string sceneName)
     {
+        fadeScreen.gameObject.SetActive(true);
+        fadeScreen.DOFade(1, 1).OnComplete(() => SceneManager.LoadScene(sceneName));
+    }
+
+    public void ContinueGame(string sceneName)
+    {
+
         fadeScreen.gameObject.SetActive(true);
         fadeScreen.DOFade(1, 1).OnComplete(() => SceneManager.LoadScene(sceneName));
     }
 
     public void ResetPrefs()
     {
+        PlayerPrefs.SetInt("Crown1", 0);
+        PlayerPrefs.SetInt("Crown2", 0);
+        PlayerPrefs.SetInt("Crown3", 0);
+        CollectibleController.collectible = 0;
         PlayerPrefs.DeleteAll();
     }
 
