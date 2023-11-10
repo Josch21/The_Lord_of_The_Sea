@@ -92,13 +92,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking && !isStunned && controlsEnabled)
         {
-            isJumping = true;
-            jumpTime = jumpStartTime;
+            //isJumping = true;
+            //jumpTime = jumpStartTime;
             animator.Play("Jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        if (Input.GetButton(KeyCode.Space) && isJumping == true) 
+        /*if (Input.GetButton(KeyCode.Space) && isJumping == true) 
         {
             if (jumpTime > 0)
             {
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp(KeyCode.Space)) 
         {
             isJumping = false;
-        }
+        }*/
     }
     private bool IsGrounded()
     {
