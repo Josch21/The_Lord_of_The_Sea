@@ -178,6 +178,10 @@ public class PlayerController : MonoBehaviour
             movingForce = 1000;
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -12, 12), Mathf.Clamp(rb.velocity.y, -30, 19));
         }
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 1) 
+        { 
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2);
+        }
     }
 
     void ChangeDirectionInAir()
