@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
     public float invincibleTime = 2;
     public int coinsLoseWhenDie = 5;
     public float jumpStartTime;
-    private float jumpTime;
-    private bool isJumping;
 
 
     public GameObject swordHitbox;
@@ -332,6 +330,11 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<BossBattleController>().StartBattleSequence();
             Debug.Log("Boss Battle Collider");
+        }
+        if (collision.CompareTag("speedUp"))
+        {
+            Destroy(collision.gameObject);
+            movingForce *= 1.5f;
         }
     }
 

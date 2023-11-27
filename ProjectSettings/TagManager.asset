@@ -19,6 +19,7 @@ TagManager:
   - boss
   - Ladder
   - crown
+  - speedUp
   layers:
   - Default
   - TransparentFX
