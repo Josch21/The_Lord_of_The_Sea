@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public float invincibleTime = 2;
     public int coinsLoseWhenDie = 5;
     public float jumpStartTime;
+    public float speedBost = 1f;
+    public float speedUpTime = 10;
+    public float speedUpTimer = 0;
 
 
     public GameObject swordHitbox;
@@ -76,13 +79,14 @@ public class PlayerController : MonoBehaviour
         ChangeDirectionInAir();
         ManageLifeBar();
         ManagePowerUp();
+        ManageSpeedBoost();
     }
    
     void MoveByPhysics()
     {
         if (!isAttacking && !isStunned && controlsEnabled)
         {
-            float translation = Input.GetAxis("Horizontal") * movingForce;
+            float translation = Input.GetAxis("Horizontal") * movingForce * speedBost;
             translation *= Time.deltaTime;
 
             rb.AddForce(Vector2.right * translation);
@@ -334,7 +338,8 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("speedUp"))
         {
             Destroy(collision.gameObject);
-            movingForce *= 1.5f;
+            speedUpTimer = speedUpTime;
+            speedBost *= 2f;
         }
     }
 
@@ -387,6 +392,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ManageSpeedBoost()
+    {
+        if (speedUpTimer > 0)
+        {
+            speedUpTimer -= 1 * Time.deltaTime;
+        } else if(speedUpTimer <= 0)
+        {
+            Debug.Log("a");
+            speedBost = 1f;
+        }
+    }
     void ManagePowerUp()
     {
         if (powerUpTimer > 0)
