@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     public float speedUpTime = 10;
     public float speedUpTimer = 0;
     public bool speedBoostOn;
-    public static int speedPoUp = 0;
-
 
     public GameObject swordHitbox;
     public Transform extrasHolder;
@@ -34,9 +32,6 @@ public class PlayerController : MonoBehaviour
     public GameObject coinParticlePrefab;
     public GameObject heartParticlePrefab;
     public GameObject powerUpParticlePrefab;
-    public Image[] buffs;
-    public Sprite emptyItem;
-    public Sprite speedUpIcon;
 
     public LayerMask platformLayerMask;
 
@@ -346,15 +341,6 @@ public class PlayerController : MonoBehaviour
             speedUpTimer = speedUpTime;
             speedBost *= 2f;
             speedBoostOn = true;
-
-            foreach (Image img in buffs)
-            {
-                img.sprite = emptyItem;
-            }
-            for (int i = 0; i < speedPoUp; i++)
-            {
-                buffs[i].sprite = speedUpIcon;
-            }
         }
     }
 
