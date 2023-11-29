@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public float viewRange = 6;
     public float directionLookOutTime = 3;
     public float shootCooldown = 3;
+    public PlayerController playerController;
 
     float directionTimeCounter = 0;
     float shootCooldownCounter = 0;
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour
         playerTr = GameObject.Find("Player").transform;
         boxCollider = GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(boxCollider, playerTr.gameObject.GetComponent<BoxCollider2D>());
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void Update()
@@ -196,7 +198,15 @@ public class EnemyController : MonoBehaviour
                 currentState = state.PlayerSpotted;
                 rb.AddForce(Vector2.right * 5 * CheckLeftRight(transform.position.x, playerTr.transform.position.x), ForceMode2D.Impulse);
                 animator.Play("Hurt");
-                currentLife -= 2;
+                //currentLife -= 2;
+                if (playerController.speedBoostOn)
+                {
+                    currentLife--;
+                }
+                else 
+                {
+                    currentLife -= 2;
+                }
                 if (currentLife <= 0)
                 {
                     currentState = state.Dead;

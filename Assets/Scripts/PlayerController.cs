@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float speedBost = 1f;
     public float speedUpTime = 10;
     public float speedUpTimer = 0;
+    public bool speedBoostOn;
 
 
     public GameObject swordHitbox;
@@ -340,6 +341,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             speedUpTimer = speedUpTime;
             speedBost *= 2f;
+            speedBoostOn = true;
         }
     }
 
@@ -397,10 +399,12 @@ public class PlayerController : MonoBehaviour
         if (speedUpTimer > 0)
         {
             speedUpTimer -= 1 * Time.deltaTime;
+
         } else if(speedUpTimer <= 0)
         {
             Debug.Log("a");
             speedBost = 1f;
+            speedBoostOn = false;
         }
     }
     void ManagePowerUp()
