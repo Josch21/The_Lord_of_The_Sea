@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (!isAttacking && !isStunned && controlsEnabled && IsGrounded())
             {
@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(StopAttacking(shootEndLag));
             }
         }
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (!isAttacking && !isStunned && controlsEnabled && IsGrounded())
             {
