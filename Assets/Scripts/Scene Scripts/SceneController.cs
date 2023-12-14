@@ -46,11 +46,11 @@ public class SceneController : MonoBehaviour
     void TeleportPlayerToCheckpoint()
     {
         //Esto es para cuando tengo checkpoints y le doy Continue en el menu principal, poder continuar desde el último checkpoint.
-        /*if (PlayerPrefs.HasKey("checkpointX") && PlayerPrefs.HasKey("checkpointY"))
+        if (PlayerPrefs.HasKey("checkpointX") && PlayerPrefs.HasKey("checkpointY"))
         {
             playertTr.position = new Vector3(PlayerPrefs.GetFloat("checkpointX"), PlayerPrefs.GetFloat("checkpointY"), playertTr.position.z);
             cameraTr.position = new Vector3(PlayerPrefs.GetFloat("checkpointX"), PlayerPrefs.GetFloat("checkpointY"), cameraTr.position.z);
-        }*/
+        }
     }
 
     void FadeInScene()
